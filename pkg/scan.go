@@ -114,15 +114,11 @@ func (s *scanner) Scan(scanItems []ScanItem, scanConfig ScanConfig, opts ...engi
 		return &reporting.Report{}, fmt.Errorf("error(s) processing scan items:\n%w", errors.Join(errs...))
 	}
 
-<<<<<<< HEAD
 	if err := engineInstance.Shutdown(); err != nil {
-		return cmd.Report, fmt.Errorf("error shutting down engine: %w", err)
+		return engineInstance.GetReport(), fmt.Errorf("error shutting down engine: %w", err)
 	}
 
-	return cmd.Report, nil
-=======
 	return engineInstance.GetReport(), nil
->>>>>>> 0bfa37b (Fixed racing conditions)
 }
 
 func startPipeline(engineInstance engine.IEngine, withValidation bool) {
